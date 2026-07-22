@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  heading?: string;
+  items?: string[];
+  lang: Lang;
+}
+const { heading, items, lang } = Astro.props;
+
+let entries;
+const all = await getCollection('testimonials', (t) => t.data.lang === lang);
+if (items && items.length) {
+  entries = all.filter((t) => items.includes(t.data.translationKey));
+} else {
+  entries = all.slice(0, 3);
+}
+---
+
+{entries.length > 0 && (
+  <section class="section section--soft">
+    <div class="container">
+      {heading && (
+        <div class="section__head">
+          <h2 class="display">{heading}</h2>
+        </div>
+      )}
+      <div class="grid">
+        {entries.map((t) => (
+          <figure class="q">
+            <div class="stars" aria-label={`${t.data.rating} / 5`}>{'★'.repeat(t.data.rating)}</div>
+            <blockquote>{t.data.quote}</blockquote>
+            <figcaption>
+              <b>{t.data.author}</b>
+              {(t.data.role || t.data.company) && (
+                <span>{[t.data.role, t.data.company].filter(Boolean).join(', ')}</span>
+              )}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: var(--bw) solid var(--ink);
+  }
+  .q {
+    margin: 0;
+    padding: 26px;
+    background: var(--blue-deep);
+    color: #fff;
+    border-right: var(--bw) solid var(--ink);
+  }
+  .q:last-child {
+    border-right: 0;
+  }
+  .stars {
+    color: #ffd23b;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  blockquote {
+    margin: 0 0 16px;
+    font-size: 1.02rem;
+    line-height: 1.5;
+  }
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.95;
+  }
+  figcaption b {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.86rem;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .q {
+      border-right: 0;
+      border-bottom: var(--bw) solid var(--ink);
+    }
+    .q:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

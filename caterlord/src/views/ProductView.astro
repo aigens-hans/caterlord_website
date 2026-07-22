@@ -1,0 +1,51 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import FeatureGrid from '@/components/FeatureGrid.astro';
+import ProductGrid from '@/components/ProductGrid.astro';
+import CTA from '@/components/CTA.astro';
+import { localizePath, t } from '@/i18n/utils';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  entry: any;
+  lang: Lang;
+}
+const { entry, lang } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const hasBody = !!entry.body;
+---
+
+<BaseLayout lang={lang} title={d.name} seo={d.seo ?? {}}>
+  <Hero
+    heading={d.hero.heading}
+    subheading={d.hero.subheading}
+    image={d.hero.image}
+    cta={d.hero.cta}
+  />
+
+  {d.features && d.features.length > 0 && (
+    <FeatureGrid heading={d.tagline ?? undefined} items={d.features} />
+  )}
+
+  {hasBody && (
+    <section class="section">
+      <div class="container">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </section>
+  )}
+
+  {d.relatedProducts && d.relatedProducts.length > 0 && (
+    <ProductGrid heading="Related products" items={d.relatedProducts} lang={lang} />
+  )}
+
+  <CTA
+    heading={t(lang, 'cta.bookDemo')}
+    cta={{ label: t(lang, 'cta.talkToTeam'), href: localizePath('/book-a-demo/', lang) }}
+  />
+</BaseLayout>

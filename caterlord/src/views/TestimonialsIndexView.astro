@@ -1,0 +1,65 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  entries: any[];
+  lang: Lang;
+}
+const { entries, lang } = Astro.props;
+---
+
+<BaseLayout lang={lang} title="Testimonials">
+  <section class="section">
+    <div class="container">
+      <h1>Testimonials</h1>
+      <div class="grid">
+        {entries.map((t) => (
+          <figure class="quote">
+            <div class="stars" aria-label={`${t.data.rating} / 5`}>{'★'.repeat(t.data.rating)}</div>
+            <blockquote>“{t.data.quote}”</blockquote>
+            <figcaption>
+              <strong>{t.data.author}</strong>
+              {t.data.role && <span>{t.data.role}{t.data.company ? `, ${t.data.company}` : ''}</span>}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .quote {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 0;
+  }
+  .stars {
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  blockquote {
+    margin: 0 0 1rem;
+  }
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: var(--color-text-soft);
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { hrefForEntry } from '@/lib/content';
+import { t } from '@/i18n/utils';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  entries: any[];
+  lang: Lang;
+}
+const { entries, lang } = Astro.props;
+const sorted = [...entries].sort((a, b) => +new Date(b.data.date) - +new Date(a.data.date));
+---
+
+<BaseLayout lang={lang} title={t(lang, 'nav.blog')}>
+  <section class="section">
+    <div class="container">
+      <h1>{t(lang, 'blog.latest')}</h1>
+      <div class="list">
+        {sorted.map((p) => (
+          <a class="row" href={hrefForEntry(p, 'blog')}>
+            <time>{new Date(p.data.date).toLocaleDateString(lang)}</time>
+            <div>
+              <h3>{p.data.title}</h3>
+              {p.data.excerpt && <p>{p.data.excerpt}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+  .row:hover {
+    text-decoration: none;
+  }
+  time {
+    color: var(--color-text-soft);
+    font-size: 0.9rem;
+    min-width: 130px;
+  }
+  .row h3 {
+    margin: 0 0 0.25rem;
+  }
+  .row p {
+    margin: 0;
+    color: var(--color-text-soft);
+  }
+</style>

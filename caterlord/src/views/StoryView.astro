@@ -1,0 +1,82 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  entry: any;
+  lang: Lang;
+}
+const { entry, lang } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayout lang={lang} title={d.title} seo={d.seo ?? {}}>
+  <section class="section">
+    <div class="container narrow">
+      {d.cover && <img class="cover" src={d.cover} alt="" />}
+      <h1>{d.title}</h1>
+      <p class="meta">
+        <strong>{d.client}</strong>
+        {d.person && <span> · {d.person}</span>}
+        {d.role && <span>, {d.role}</span>}
+      </p>
+
+      {d.quote && <blockquote>{d.quote}</blockquote>}
+
+      {d.metrics && d.metrics.length > 0 && (
+        <div class="metrics">
+          {d.metrics.map((m: { label: string; value: string }) => (
+            <div>
+              <strong>{m.value}</strong>
+              <span>{m.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 760px;
+  }
+  .cover {
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+  }
+  .meta {
+    color: var(--color-text-soft);
+  }
+  blockquote {
+    border-left: 3px solid var(--color-brand);
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    font-size: 1.15rem;
+    color: var(--color-text);
+  }
+  .metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  .metrics strong {
+    display: block;
+    font-size: 1.8rem;
+    color: var(--color-brand-strong);
+  }
+  .metrics span {
+    color: var(--color-text-soft);
+    font-size: 0.9rem;
+  }
+</style>

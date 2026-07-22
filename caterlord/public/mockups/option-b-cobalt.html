@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caterlord — Option B · Cobalt (Clean SaaS)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Hallmark · option B · genre: modern-minimal · theme: Cobalt (white · grotesk · blue) */
+  :root{
+    --paper:#ffffff; --surface:#f5f8fb; --surface-2:#eaf2f9;
+    --ink:#0f172a; --ink-soft:#51635c; --ink-soft:#5b6672;
+    --border:#e6ecf2; --accent:#00b0fa; --accent-strong:#0095d6; --accent-soft:#e6f7fe;
+    --display:"Space Grotesk",sans-serif; --sans:"Inter",system-ui,sans-serif;
+    --max:1160px; --r:16px; --r-sm:11px;
+  }
+  *{box-sizing:border-box}
+  html,body{overflow-x:clip}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:var(--accent-strong);text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent-strong);font-weight:600;font-size:.82rem;padding:.4rem .85rem;border-radius:999px}
+
+  /* nav — canonical SaaS */
+  header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;gap:28px;height:68px}
+  .nav img{height:30px}
+  .nav .links{display:flex;gap:24px;margin-left:8px}
+  .nav .links a{color:var(--ink);font-size:.95rem;font-weight:500}
+  .nav .links a:hover{color:var(--accent-strong)}
+  .nav .right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--accent);color:#fff;font-weight:600;padding:.7rem 1.25rem;border-radius:999px;font-size:.95rem;box-shadow:0 8px 20px rgba(0,176,250,.25);transition:transform .08s,background .2s}
+  .btn:hover{background:var(--accent-strong);transform:translateY(-1px);color:#fff}
+  .btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--border);box-shadow:none}
+  .btn--ghost:hover{background:var(--surface);color:var(--ink)}
+
+  /* hero — centered + product bento */
+  .hero{text-align:center;padding:clamp(48px,8vw,86px) 0 8px}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5.6vw,4rem);line-height:1.04;letter-spacing:-.02em;margin:1.1rem auto 1.1rem;max-width:16ch}
+  .hero h1 span{color:var(--accent-strong)}
+  .hero p{font-size:1.12rem;color:var(--ink-soft);max-width:58ch;margin:0 auto 1.8rem}
+  .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:14px;margin-top:48px}
+  .bento .tile{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--surface);position:relative}
+  .bento .tile img{width:100%;height:100%;object-fit:cover}
+  .bento .big{grid-column:span 2;grid-row:span 2}
+  .bento .wide{grid-column:span 2}
+
+  /* logos */
+  .logos{padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:56px}
+  .logos .row{display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap;opacity:.7}
+
+  /* why — bento */
+  .sec{padding:clamp(52px,8vw,96px) 0}
+  .sec h2{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,3.6vw,2.6rem);letter-spacing:-.02em;margin:.4rem 0 .4rem}
+  .sec .sub{color:var(--ink-soft);max-width:60ch;margin:0 0 36px}
+  .center{text-align:center}
+  .center .sub{margin-left:auto;margin-right:auto}
+  .grid-feat{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+  .card{border:1px solid var(--border);border-radius:var(--r);padding:24px;background:#fff;transition:box-shadow .2s,border-color .2s}
+  .card:hover{box-shadow:0 14px 34px rgba(15,40,70,.08);border-color:var(--accent)}
+  .card .ic{width:40px;height:40px;border-radius:11px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent-strong);font-weight:700;font-family:var(--display)}
+  .card h3{font-family:var(--display);font-size:1.15rem;margin:14px 0 6px}
+  .card p{color:var(--ink-soft);margin:0;font-size:.95rem}
+  .card.tall{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(160deg,var(--accent-soft),#fff)}
+
+  /* products */
+  .grid-prod{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pcard{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:#fff;transition:transform .12s,box-shadow .2s}
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(15,40,70,.1)}
+  .pcard img{aspect-ratio:4/3;object-fit:cover;width:100%}
+  .pcard .b{padding:16px 18px 20px}
+  .pcard h3{font-family:var(--display);font-size:1.1rem;margin:0 0 4px}
+  .pcard p{color:var(--ink-soft);margin:0;font-size:.92rem}
+
+  /* quote */
+  .quote{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:32px}
+  .quote img{border-radius:var(--r-sm);width:100%;object-fit:cover;aspect-ratio:4/3}
+  .quote .stars{color:#f5a623;letter-spacing:2px;margin-bottom:8px}
+  .quote blockquote{font-size:1.2rem;line-height:1.5;margin:0 0 14px;font-weight:500}
+  .quote cite{font-style:normal;color:var(--ink-soft);font-size:.92rem}
+
+  /* cta */
+  .cta-band{background:var(--accent);color:#fff;border-radius:24px;padding:clamp(36px,6vw,56px);text-align:center;margin:clamp(52px,8vw,96px) auto}
+  .cta-band h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.4rem);margin:0 0 10px;color:#fff}
+  .cta-band p{color:rgba(255,255,255,.9);margin:0 auto 22px;max-width:50ch}
+  .cta-band .btn{background:#fff;color:var(--accent-strong);box-shadow:none}
+  .cta-band .btn:hover{background:#f0f7ff}
+
+  footer{border-top:1px solid var(--border);padding:48px 0 32px;margin-top:0}
+  .fgrid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px}
+  .fgrid h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 12px}
+  .fgrid a{display:block;color:var(--ink);font-size:.92rem;padding:4px 0}
+  .fgrid a:hover{color:var(--accent-strong)}
+  .fbot{border-top:1px solid var(--border);margin-top:32px;padding-top:20px;color:var(--ink-soft);font-size:.85rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  @media(max-width:860px){
+    .nav .links{display:none}
+    .bento{grid-template-columns:repeat(2,1fr)}
+    .bento .big,.bento .wide{grid-column:span 2}
+    .grid-feat,.grid-prod,.quote,.fgrid{grid-template-columns:1fr}
+    .card.tall{grid-row:auto}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <img src="/uploads/2024/11/logo_Caterlord_b-1.png" alt="Caterlord" />
+      <nav class="links"><a href="#">Products</a><a href="#">Solutions</a><a href="#">Success Stories</a><a href="#">Pricing</a></nav>
+      <div class="right">
+        <a href="#" style="font-weight:600;color:var(--ink)">Sign in</a>
+        <a class="btn" href="#">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="wrap hero">
+    <span class="pill">● The No.1 cloud POS for restaurants</span>
+    <h1>Run every channel from <span>one POS.</span></h1>
+    <p>An all-in-one solution, seamlessly integrated with major food delivery platforms, QR ordering, payment gateways and e-wallets — with real-time sync between online and offline operations.</p>
+    <div class="cta-row">
+      <a class="btn" href="#">Book a demo</a>
+      <a class="btn btn--ghost" href="#">Explore products</a>
+    </div>
+
+    <div class="bento">
+      <div class="tile big"><img src="/uploads/2025/02/caterlordPOS_003_EN5.jpg" alt="Caterlord POS"></div>
+      <div class="tile"><img src="/uploads/2024/12/product_mobile.jpg" alt=""></div>
+      <div class="tile"><img src="/uploads/2024/12/product_KDS.jpg" alt=""></div>
+      <div class="tile wide"><img src="/uploads/2025/02/CPOS01_EN5.png" alt=""></div>
+      <div class="tile"><img src="/uploads/2024/12/product_pos.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <section class="wrap logos">
+    <div class="row">
+      <img src="/uploads/2024/12/clients_group01.png" style="height:42px" alt="">
+      <img src="/uploads/2024/12/clients_group02.png" style="height:42px" alt="">
+      <img src="/uploads/2024/12/clients_group03.png" style="height:42px" alt="">
+      <img src="/uploads/2024/12/clients_group04.png" style="height:42px" alt="">
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="center" style="margin-bottom:40px">
+      <span class="pill">Why Caterlord</span>
+      <h2>Everything to run your restaurant</h2>
+      <p class="sub">Partner with a single vendor and select the modules that fit your concept — from POS to kiosk, checkout, loyalty and kitchen display.</p>
+    </div>
+    <div class="grid-feat">
+      <div class="card tall">
+        <div>
+          <div class="ic">⚡</div>
+          <h3>Fully connected, in real time</h3>
+          <p>The Caterlord Cloud API links your POS to delivery platforms, 3PL/4PL, payments, e-wallets, accounting, ERP and inventory — syncing across every location.</p>
+        </div>
+        <span class="pill" style="align-self:flex-start">Cloud API</span>
+      </div>
+      <div class="card"><div class="ic">◆</div><h3>All-in-one</h3><p>POS, QR &amp; kiosk ordering, checkout, loyalty, Connect and KDS from one vendor.</p></div>
+      <div class="card"><div class="ic">▲</div><h3>Data insights</h3><p>50+ performance reports and BI visualization across all locations.</p></div>
+      <div class="card"><div class="ic">▣</div><h3>Hardware agnostic</h3><p>Android, Windows and iOS — desktops, tablets and handhelds.</p></div>
+      <div class="card"><div class="ic">⇄</div><h3>Open platform</h3><p>Proactively acquiring partners for unlimited expansion.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap sec" style="padding-top:0">
+    <div class="center" style="margin-bottom:40px">
+      <span class="pill">Ecosystem</span>
+      <h2>One platform, seven modules</h2>
+    </div>
+    <div class="grid-prod">
+      <a class="pcard" href="#"><img src="/uploads/2024/12/product_pos.jpg"><div class="b"><h3>Caterlord POS</h3><p>The cloud POS at the core of the ecosystem.</p></div></a>
+      <a class="pcard" href="#"><img src="/uploads/2024/12/product_mobile.jpg"><div class="b"><h3>Caterlord Mobile</h3><p>QR self-ordering integrated with your POS.</p></div></a>
+      <a class="pcard" href="#"><img src="/uploads/2025/09/product_kiosk3-1280x1536-1.jpg"><div class="b"><h3>Caterlord Kiosk</h3><p>Pre-paid kiosk orders straight to the POS.</p></div></a>
+      <a class="pcard" href="#"><img src="/uploads/2025/03/product_SelfCheckout2.png"><div class="b"><h3>Caterlord Checkout</h3><p>Let guests pay themselves — tables free up.</p></div></a>
+      <a class="pcard" href="#"><img src="/uploads/2024/12/product_loyalty.jpg"><div class="b"><h3>Caterlord Loyalty</h3><p>Reward members on every transaction.</p></div></a>
+      <a class="pcard" href="#"><img src="/uploads/2024/12/product_connect.jpg"><div class="b"><h3>Caterlord Connect</h3><p>Aggregator orders, unified into one POS.</p></div></a>
+    </div>
+  </section>
+
+  <section class="wrap sec" style="padding-top:0">
+    <div class="quote">
+      <img src="/uploads/2026/06/GoldenPhoenix_TestimonialCovers.jpg" alt="Golden Phoenix">
+      <div>
+        <div class="stars">★★★★★</div>
+        <blockquote>“Since integrating delivery platforms with checkout, staff no longer re-enter orders manually. The bottlenecks at the cashier are gone.”</blockquote>
+        <cite>— Ms Man Wong, Chief Executive, Golden Phoenix Restaurant</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="cta-band">
+      <h2>Ready to modernize your restaurant?</h2>
+      <p>Talk to our team and we'll tailor a plan for your operation.</p>
+      <a class="btn" href="#">Book a demo</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div><img src="/uploads/2024/11/logo_Caterlord_b-1.png" style="height:28px;margin-bottom:12px" alt=""><p style="color:var(--ink-soft);font-size:.9rem;margin:0;max-width:34ch">The all-in-one cloud POS system for restaurants, by Everyware.</p></div>
+        <div><h4>Products</h4><a href="#">POS</a><a href="#">Mobile</a><a href="#">Kiosk</a><a href="#">Checkout</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Partners</a><a href="#">Success Stories</a><a href="#">Blog</a></div>
+        <div><h4>Contact</h4><a href="#">Book a demo</a><a href="#">+852 6888-0133</a></div>
+      </div>
+      <div class="fbot"><span>© Caterlord · Everyware</span><span>caterlord.com</span></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+---
+import { languages, locales, type Lang } from '@/i18n/config';
+import { alternatesFor } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const alternates = alternatesFor(Astro.url.pathname);
+---
+
+<div class="lang">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  </svg>
+  <select aria-label="Language" onchange="window.location = this.value">
+    {alternates.map((alt) => (
+      <option value={alt.href} selected={alt.lang === lang}>{languages[alt.lang].label}</option>
+    ))}
+  </select>
+</div>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text-soft);
+  }
+  select {
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: #fff;
+    padding: 0.35rem 0.6rem;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+</style>

@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import { hrefForEntry } from '@/lib/content';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  heading?: string;
+  lang: Lang;
+}
+const { heading, lang } = Astro.props;
+
+const types = [...(await getCollection('restaurantTypes', (r) => r.data.lang === lang))].sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+---
+
+{types.length > 0 && (
+  <section class="section section--soft">
+    <div class="container">
+      {heading && (
+        <div class="section__head">
+          <h2 class="display">{heading}</h2>
+        </div>
+      )}
+      <div class="grid bw">
+        {types.map((r) => (
+          <a class="tile" href={hrefForEntry(r)}>
+            {r.data.icon && <img src={r.data.icon} alt="" loading="lazy" />}
+            <span>{r.data.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 10px;
+    border-right: var(--bw) solid var(--ink);
+    border-bottom: var(--bw) solid var(--ink);
+    background: #fff;
+    color: var(--ink);
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: background 0.12s ease;
+  }
+  .tile:nth-child(6n) {
+    border-right: 0;
+  }
+  .tile:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+  .tile img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .tile:nth-child(6n) {
+      border-right: var(--bw) solid var(--ink);
+    }
+    .tile:nth-child(3n) {
+      border-right: 0;
+    }
+  }
+  @media (max-width: 520px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

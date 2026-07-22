@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caterlord — Option A · Atelier (Editorial)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Hallmark · option A · genre: editorial · theme: Atelier (warm light · serif display · blue accent) */
+  :root{
+    --paper:#fbf8f2; --paper-2:#f3ede1; --ink:#1a1714; --ink-soft:#6b6358;
+    --rule:#e4dccd; --accent:#00b0fa; --accent-ink:#007fb3;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+    --max:1180px;
+  }
+  *{box-sizing:border-box}
+  html,body{overflow-x:clip}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:var(--accent-ink);text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+
+  /* nav — masthead */
+  header{border-bottom:1px solid var(--rule)}
+  .nav{display:flex;align-items:center;gap:32px;height:74px}
+  .nav img{height:30px}
+  .nav .links{display:flex;gap:26px;margin-left:auto}
+  .nav .links a{color:var(--ink);font-size:.95rem}
+  .nav .links a:hover{color:var(--accent-ink)}
+  .nav .cta{font-weight:600;border-bottom:2px solid var(--ink);padding-bottom:2px}
+
+  /* hero — asymmetric editorial */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:clamp(40px,7vw,84px) 0}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:.5rem 0 1.2rem}
+  .hero h1 em{font-style:normal;color:var(--accent-ink)}
+  .hero p.lead{font-size:1.12rem;color:var(--ink-soft);max-width:46ch;margin-bottom:1.8rem}
+  .hero .num{font-family:var(--serif);color:var(--accent-ink);font-size:.9rem}
+  .hero-cta{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+  .link-cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:3px}
+  .link-cta:hover{color:var(--accent-ink)}
+  .hero figure{margin:0;position:relative}
+  .hero figure img{width:100%;border-radius:2px;filter:saturate(.96)}
+  .hero figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:.7rem;font-style:italic}
+
+  /* section heading */
+  .sec{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--rule)}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:42px}
+  .sec-head .n{font-family:var(--serif);color:var(--accent-ink);font-size:1rem}
+  .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3.6vw,2.8rem);margin:0;letter-spacing:-.01em}
+
+  /* why — editorial list */
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .why article{padding:30px 30px 30px 0;border-top:1px solid var(--rule)}
+  .why article:nth-child(2n){padding-left:30px;padding-right:0;border-left:1px solid var(--rule)}
+  .why h3{font-family:var(--serif);font-weight:600;font-size:1.4rem;margin:.2rem 0 .5rem}
+  .why p{color:var(--ink-soft);margin:0;font-size:1rem}
+
+  /* ecosystem — editorial list with thumbs */
+  .eco{display:grid;grid-template-columns:repeat(2,1fr)}
+  .eco a{display:flex;gap:18px;align-items:center;padding:18px 0;border-top:1px solid var(--rule);color:var(--ink)}
+  .eco a:nth-child(2n){padding-left:24px;border-left:1px solid var(--rule)}
+  .eco a:hover{color:var(--accent-ink)}
+  .eco img{width:64px;height:64px;object-fit:cover;border-radius:3px;flex:none}
+  .eco .meta b{font-family:var(--serif);font-weight:600;font-size:1.1rem;display:block}
+  .eco .meta span{font-size:.9rem;color:var(--ink-soft)}
+
+  /* pull quote */
+  .quote{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}
+  .quote img{border-radius:2px;width:100%}
+  .quote blockquote{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;margin:0 0 1rem;letter-spacing:-.01em}
+  .quote cite{font-style:normal;color:var(--ink-soft);font-size:.95rem}
+
+  /* CTA */
+  .cta{text-align:center;padding:clamp(56px,9vw,110px) 0;border-top:1px solid var(--rule)}
+  .cta h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,3rem);margin:0 0 1.2rem;letter-spacing:-.02em}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper);padding:.95rem 1.8rem;border-radius:2px;font-weight:600;letter-spacing:.01em}
+  .btn:hover{background:var(--accent-ink);color:#fff}
+
+  footer{border-top:1px solid var(--rule);padding:32px 0;color:var(--ink-soft);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  @media(max-width:860px){
+    .hero,.why,.eco,.quote{grid-template-columns:1fr}
+    .why article:nth-child(2n),.eco a:nth-child(2n){padding-left:0;border-left:none}
+    .hero figure{order:-1}
+    .nav .links{display:none}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <img src="/uploads/2024/11/logo_Caterlord_b-1.png" alt="Caterlord" />
+      <nav class="links">
+        <a href="#">Products</a><a href="#">Solutions</a><a href="#">Success Stories</a><a href="#" class="cta">Book a demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="wrap hero">
+    <div>
+      <span class="num">№ 01 — POS System</span>
+      <h1>All-in-one <em>POS solution.</em></h1>
+      <p class="lead">The No.1 cloud POS for restaurants. Seamlessly integrated with major food delivery platforms, QR ordering, payment gateways and e-wallets — with real-time sync between online and offline operations.</p>
+      <div class="hero-cta">
+        <a class="link-cta" href="#">Book a demo →</a>
+        <a class="link-cta" href="#" style="border-color:var(--ink-soft)">Explore the ecosystem</a>
+      </div>
+    </div>
+    <figure>
+      <img src="/uploads/2025/02/caterlordPOS_003_EN5.jpg" alt="Caterlord POS in a restaurant" />
+      <figcaption>Caterlord POS — the core of the ecosystem.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><span class="n">02</span><h2>Why Caterlord?</h2></div>
+    <div class="why">
+      <article>
+        <span class="eyebrow">All-in-one</span>
+        <h3>One vendor, everything you need</h3>
+        <p>From POS to QR and kiosk ordering, checkout, loyalty, food-aggregator integration and KDS — select the modules that fit your concept.</p>
+      </article>
+      <article>
+        <span class="eyebrow">Connected</span>
+        <h3>Fully connected</h3>
+        <p>The Caterlord Cloud API links your POS to delivery platforms, 3PL/4PL, payments, e-wallets, accounting, ERP and inventory.</p>
+      </article>
+      <article>
+        <span class="eyebrow">Insight</span>
+        <h3>Valuable data insights</h3>
+        <p>Real-time data from every touchpoint, with 50+ performance reports and BI visualization across all locations.</p>
+      </article>
+      <article>
+        <span class="eyebrow">Hardware</span>
+        <h3>Hardware agnostic</h3>
+        <p>Runs effortlessly across Android, Windows and iOS — desktops, tablets and handhelds — with an intuitive interface.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><span class="n">03</span><h2>The ecosystem</h2></div>
+    <div class="eco">
+      <a href="#"><img src="/uploads/2024/12/product_pos.jpg" alt=""><span class="meta"><b>Caterlord POS</b><span>The cloud POS at the core</span></span></a>
+      <a href="#"><img src="/uploads/2024/12/product_mobile.jpg" alt=""><span class="meta"><b>Caterlord Mobile</b><span>QR self-ordering</span></span></a>
+      <a href="#"><img src="/uploads/2025/09/product_kiosk3-1280x1536-1.jpg" alt=""><span class="meta"><b>Caterlord Kiosk</b><span>Pre-paid kiosk orders</span></span></a>
+      <a href="#"><img src="/uploads/2025/03/product_SelfCheckout2.png" alt=""><span class="meta"><b>Caterlord Checkout</b><span>Guest self-checkout</span></span></a>
+      <a href="#"><img src="/uploads/2024/12/product_loyalty.jpg" alt=""><span class="meta"><b>Caterlord Loyalty</b><span>Reward every transaction</span></span></a>
+      <a href="#"><img src="/uploads/2024/12/product_connect.jpg" alt=""><span class="meta"><b>Caterlord Connect</b><span>Aggregator orders in one place</span></span></a>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><span class="n">04</span><h2>What operators say</h2></div>
+    <div class="quote">
+      <img src="/uploads/2026/06/GoldenPhoenix_TestimonialCovers.jpg" alt="Golden Phoenix Restaurant">
+      <div>
+        <blockquote>“During peak hours we used to face serious bottlenecks at the cashier. Since integrating delivery platforms with checkout, staff no longer re-enter orders manually.”</blockquote>
+        <cite>— Ms Man Wong, Chief Executive, Golden Phoenix Restaurant</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta wrap">
+    <h2>Ready to modernize your restaurant?</h2>
+    <a class="btn" href="#">Book a demo</a>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© Caterlord · Everyware</span>
+      <span>+852 6888-0133 · caterlord.com</span>
+    </div>
+  </footer>
+</body>
+</html>

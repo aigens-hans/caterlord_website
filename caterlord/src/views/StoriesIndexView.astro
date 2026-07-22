@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { hrefForEntry } from '@/lib/content';
+import { t } from '@/i18n/utils';
+import type { Lang } from '@/i18n/config';
+
+interface Props {
+  entries: any[];
+  lang: Lang;
+}
+const { entries, lang } = Astro.props;
+const sorted = [...entries].sort((a, b) => +new Date(b.data.date ?? 0) - +new Date(a.data.date ?? 0));
+---
+
+<BaseLayout lang={lang} title={t(lang, 'stories.title')}>
+  <section class="section">
+    <div class="container">
+      <h1>{t(lang, 'stories.title')}</h1>
+      <div class="grid">
+        {sorted.map((s) => (
+          <a class="card" href={hrefForEntry(s, 'success-stories')}>
+            {s.data.cover && <img src={s.data.cover} alt="" loading="lazy" />}
+            <div class="card__body">
+              <h3>{s.data.title}</h3>
+              <p class="client">{s.data.client}</p>
+              {s.data.quote && <p>{s.data.quote}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    color: var(--color-text);
+  }
+  .card:hover {
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .card img {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    width: 100%;
+  }
+  .card__body {
+    padding: 1.25rem;
+  }
+  .card h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+  }
+  .client {
+    color: var(--color-brand-strong);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

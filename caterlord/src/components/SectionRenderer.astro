@@ -1,0 +1,44 @@
+---
+import Hero from './Hero.astro';
+import FeatureGrid from './FeatureGrid.astro';
+import LogoWall from './LogoWall.astro';
+import Testimonials from './Testimonials.astro';
+import CTA from './CTA.astro';
+import FAQ from './FAQ.astro';
+import ProductGrid from './ProductGrid.astro';
+import StoriesGrid from './StoriesGrid.astro';
+import RestaurantGrid from './RestaurantGrid.astro';
+import type { Lang } from '@/i18n/config';
+
+// Mirrors the discriminated union in content.config.ts.
+type Section =
+  | { type: 'hero'; heading: string; subheading?: string; image?: string; cta?: { label: string; href: string } }
+  | { type: 'feature-grid'; heading?: string; items: any[]; columns?: number }
+  | { type: 'logo-wall'; heading?: string; images: string[] }
+  | { type: 'testimonials'; heading?: string; items?: string[] }
+  | { type: 'cta'; heading: string; subheading?: string; cta: { label: string; href: string } }
+  | { type: 'faq'; heading?: string; items: { q: string; a: string }[] }
+  | { type: 'product-grid'; heading?: string; items?: string[] }
+  | { type: 'stories-grid'; heading?: string; items?: string[] }
+  | { type: 'restaurant-grid'; heading?: string };
+
+interface Props {
+  sections: Section[];
+  lang: Lang;
+}
+const { sections, lang } = Astro.props;
+---
+
+{sections.map((s) => (
+  <Fragment>
+    {s.type === 'hero' && <Hero heading={s.heading} headingAccent={(s as any).headingAccent} eyebrow={(s as any).eyebrow} subheading={s.subheading} background={(s as any).background} image={s.image} cta={s.cta} badges={(s as any).badges} tags={(s as any).tags} stats={(s as any).stats} />}
+    {s.type === 'feature-grid' && <FeatureGrid heading={s.heading} items={s.items} columns={s.columns} />}
+    {s.type === 'logo-wall' && <LogoWall heading={s.heading} images={s.images} />}
+    {s.type === 'testimonials' && <Testimonials heading={s.heading} items={s.items} lang={lang} />}
+    {s.type === 'cta' && <CTA heading={s.heading} subheading={s.subheading} cta={s.cta} />}
+    {s.type === 'faq' && <FAQ heading={s.heading} items={s.items} />}
+    {s.type === 'product-grid' && <ProductGrid heading={s.heading} items={s.items} lang={lang} />}
+    {s.type === 'stories-grid' && <StoriesGrid heading={s.heading} items={s.items} lang={lang} />}
+    {s.type === 'restaurant-grid' && <RestaurantGrid heading={s.heading} lang={lang} />}
+  </Fragment>
+))}

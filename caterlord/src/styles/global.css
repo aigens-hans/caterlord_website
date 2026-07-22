@@ -1,0 +1,215 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   Caterlord design system — "Grid" (brutalist, E)
+   Stark paper + ink · thick 2px rules · hard offset shadows · oversized
+   condensed display (Anton) · grotesk body (Space Grotesk) · mono labels.
+   Brand blue #00B0FA (logo) as accent · real accent orange #FF5C21.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --paper: #fafafa;
+  --paper-2: #f0f0f0;
+  --ink: #0a0a0a;
+  --soft: #555555;
+  --blue: #00b0fa;        /* brand */
+  --blue-deep: #0078c2;   /* brand, deepened for white-text contrast */
+  --accent: #ff5c21;      /* hot pop */
+
+  --line: var(--ink);     /* all dividers/borders are ink */
+  --bw: 2px;              /* border weight */
+  --sh: 8px;              /* hard shadow offset */
+
+  --display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --max: 1240px;
+  --gutter: clamp(16px, 4vw, 28px);
+}
+
+/* ── Reset / base ─────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: clip;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+h2,
+h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section {
+  padding-block: clamp(40px, 7vw, 72px);
+}
+.section--soft {
+  background: var(--paper-2);
+}
+.section__head {
+  margin-bottom: 30px;
+}
+.section__head p {
+  color: var(--soft);
+  max-width: 60ch;
+  margin: 10px 0 0;
+}
+
+/* ── Brutalist primitives ─────────────────────────────────────────────────── */
+.bw {
+  border: var(--bw) solid var(--ink);
+}
+.bw-t {
+  border-top: var(--bw) solid var(--ink);
+}
+.bw-b {
+  border-bottom: var(--bw) solid var(--ink);
+}
+.sh {
+  box-shadow: var(--sh) var(--sh) 0 var(--ink);
+}
+.sh-blue {
+  box-shadow: var(--sh) var(--sh) 0 var(--blue-deep);
+}
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+}
+.mono {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.74rem;
+}
+.tag {
+  display: inline-block;
+  border: var(--bw) solid var(--ink);
+  padding: 0.3rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #fff;
+  line-height: 1;
+}
+.tag--blue {
+  background: var(--blue-deep);
+  color: #fff;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: var(--bw) solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 1.1rem;
+  transition: transform 0.06s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+.btn:hover {
+  background: var(--blue-deep);
+  color: #fff;
+}
+.btn--blue {
+  background: var(--blue-deep);
+}
+.btn--blue:hover {
+  background: var(--ink);
+}
+.btn--ghost {
+  background: #fff;
+  color: var(--ink);
+}
+.btn--ghost:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+/* ── Prose (markdown bodies) ──────────────────────────────────────────────── */
+.prose {
+  max-width: 740px;
+}
+.prose :where(h2) {
+  margin-top: 2.5rem;
+}
+.prose :where(ul, ol) {
+  padding-left: 1.25rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Legacy token aliases
+   Older components/views reference these semantic names. They map onto the
+   brutalist system so secondary pages shift toward the new look without a
+   rewrite (sharp corners, ink borders, brand accents).
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  --color-bg: var(--paper);
+  --color-surface: var(--paper-2);
+  --color-surface-2: var(--paper-2);
+  --color-text: var(--ink);
+  --color-text-soft: var(--soft);
+  --color-border: var(--ink);
+  --color-brand: var(--blue-deep);
+  --color-brand-strong: var(--blue-deep);
+  --color-brand-soft: #e6f7fe;
+  --color-accent: var(--accent);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.06);
+  --shadow-md: 0 8px 24px rgba(10, 10, 10, 0.08);
+  --font-sans: var(--sans);
+}

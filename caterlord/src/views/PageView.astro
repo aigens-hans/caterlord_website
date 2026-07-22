@@ -1,0 +1,32 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionRenderer from '@/components/SectionRenderer.astro';
+import type { Lang } from '@/i18n/config';
+
+// Renders any "section-driven" page: home, about, contact, restaurant-type,
+// solution, faqs, etc. Falls back to the Markdown body when no sections exist.
+interface Props {
+  entry: any;
+  lang: Lang;
+}
+const { entry, lang } = Astro.props;
+const { Content } = await render(entry);
+const sections = entry.data.sections ?? [];
+const hasBody = !!entry.body;
+---
+
+<BaseLayout lang={lang} title={entry.data.title} seo={entry.data.seo ?? {}}>
+  <SectionRenderer sections={sections} lang={lang} />
+
+  {hasBody && (
+    <section class="section">
+      <div class="container">
+        {sections.length === 0 && <h1>{entry.data.title}</h1>}
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

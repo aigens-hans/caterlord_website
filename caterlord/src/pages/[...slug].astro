@@ -1,0 +1,31 @@
+---
+// Single catch-all route for the entire site.
+// Every Markdown file (across all collections × all 4 languages) becomes a
+// URL via getAllRoutes(). To add a new section type, extend lib/routes.ts and
+// add a view + a case below.
+import { getAllRoutes, type RouteProps } from '@/lib/routes';
+import PageView from '@/views/PageView.astro';
+import ProductView from '@/views/ProductView.astro';
+import BlogIndexView from '@/views/BlogIndexView.astro';
+import BlogPostView from '@/views/BlogPostView.astro';
+import StoriesIndexView from '@/views/StoriesIndexView.astro';
+import StoryView from '@/views/StoryView.astro';
+import TestimonialsIndexView from '@/views/TestimonialsIndexView.astro';
+
+export async function getStaticPaths() {
+  return getAllRoutes();
+}
+
+const props = Astro.props as unknown as RouteProps;
+---
+
+{props.type === 'home' && <PageView entry={props.entry} lang={props.lang} />}
+{props.type === 'page' && <PageView entry={props.entry} lang={props.lang} />}
+{props.type === 'restaurant-type' && <PageView entry={props.entry} lang={props.lang} />}
+{props.type === 'solution' && <PageView entry={props.entry} lang={props.lang} />}
+{props.type === 'product' && <ProductView entry={props.entry} lang={props.lang} />}
+{props.type === 'blog-index' && <BlogIndexView entries={props.entries} lang={props.lang} />}
+{props.type === 'blog-post' && <BlogPostView entry={props.entry} lang={props.lang} />}
+{props.type === 'stories-index' && <StoriesIndexView entries={props.entries} lang={props.lang} />}
+{props.type === 'story' && <StoryView entry={props.entry} lang={props.lang} />}
+{props.type === 'testimonials-index' && <TestimonialsIndexView entries={props.entries} lang={props.lang} />}

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caterlord — Option F · Hospitality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Hallmark · option F · concept: hospitality partner · warm earthy · photography-led · elegant serif */
+  :root{
+    --cream:#f7f0e4; --cream-2:#efe5d2; --ink:#241a12; --soft:#6f6253;
+    --clay:#b5482e; --clay-deep:#8f3622; --forest:#3c5240; --blue:#0077b6;
+    --serif:"Newsreader",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+    --max:1180px;
+  }
+  *{box-sizing:border-box} html,body{overflow-x:clip}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block} a{color:var(--clay-deep);text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  .eyebrow{font-family:var(--serif);font-style:italic;color:var(--clay);font-size:1rem}
+
+  /* nav — quiet, centered */
+  header{position:absolute;top:0;left:0;right:0;z-index:10}
+  .nav{display:flex;align-items:center;gap:22px;height:72px}
+  .nav img{height:26px;filter:brightness(0) invert(1)}
+  .nav .links{display:flex;gap:22px;margin-left:auto}
+  .nav .links a{color:#fff;font-size:.92rem;font-weight:500;opacity:.92}
+  .nav .links a:hover{opacity:1}
+  .nav .cta{color:#fff;border:1px solid rgba(255,255,255,.6);padding:.5rem 1rem;border-radius:999px;font-size:.88rem;font-weight:600}
+
+  /* hero — full-bleed photo */
+  .hero{position:relative;min-height:clamp(460px,82vh,720px);display:flex;align-items:flex-end;background:#1a1208}
+  .hero .bg{position:absolute;inset:0}
+  .hero .bg img{width:100%;height:100%;object-fit:cover}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,12,4,.55) 0%,rgba(20,12,4,.15) 35%,rgba(20,12,4,.78) 100%)}
+  .hero .inner{position:relative;z-index:2;padding:clamp(40px,7vw,80px) 0;color:#fff;max-width:760px}
+  .hero .eyebrow{color:#ffd9a8;display:block;margin-bottom:10px}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.01em;margin:0 0 18px}
+  .hero h1 em{font-style:italic;color:#ffd9a8;font-weight:400}
+  .hero p{font-size:1.12rem;color:rgba(255,255,255,.9);max-width:52ch;margin:0 0 26px}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--clay);color:#fff;font-weight:600;padding:.85rem 1.6rem;border-radius:999px;font-size:.96rem}
+  .btn:hover{background:var(--clay-deep);color:#fff}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+  .hero .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* section */
+  .sec{padding:clamp(56px,9vw,104px) 0}
+  .sec-head{max-width:64ch;margin-bottom:40px}
+  .sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,4vw,3rem);line-height:1.08;letter-spacing:-.01em;margin:8px 0 0}
+  .center{text-align:center}
+  .center .sec-head{margin-left:auto;margin-right:auto}
+
+  /* values — warm cards with hairline */
+  .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--cream-2);border-bottom:1px solid var(--cream-2)}
+  .vcard{padding:34px 30px;border-right:1px solid var(--cream-2)}
+  .vcard:last-child{border-right:0}
+  .vcard .n{font-family:var(--serif);font-style:italic;color:var(--clay);font-size:.95rem}
+  .vcard h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin:6px 0 10px}
+  .vcard p{color:var(--soft);margin:0;font-size:.98rem}
+
+  /* full-bleed image break with caption */
+  .break{position:relative;height:clamp(280px,40vw,420px);overflow:hidden}
+  .break img{width:100%;height:100%;object-fit:cover}
+  .break .cap{position:absolute;left:0;right:0;bottom:0;padding:24px 0;color:#fff;background:linear-gradient(0deg,rgba(20,12,4,.7),transparent)}
+
+  /* ecosystem — editorial list with thumbs */
+  .eco{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+  .eco a{display:flex;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--cream-2);color:var(--ink)}
+  .eco a:hover{color:var(--clay-deep)}
+  .eco img{width:72px;height:72px;object-fit:cover;border-radius:4px;flex:none}
+  .eco h3{font-family:var(--serif);font-weight:500;font-size:1.2rem;margin:0}
+  .eco p{margin:0;color:var(--soft);font-size:.9rem}
+
+  /* quote */
+  .quote{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:center;background:var(--forest);color:#f7f0e4;border-radius:6px;padding:clamp(32px,5vw,52px)}
+  .quote img{border-radius:4px;width:100%;object-fit:cover;aspect-ratio:4/5}
+  .quote .stars{color:#e8b870;letter-spacing:3px;margin-bottom:12px}
+  .quote blockquote{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.32;margin:0 0 16px}
+  .quote cite{font-style:italic;color:#cfe0cf;font-size:.92rem}
+
+  /* cta */
+  .cta{text-align:center;padding:clamp(52px,8vw,96px) 0;background:var(--clay);color:#fff}
+  .cta h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.4vw,3.2rem);margin:0 0 16px;line-height:1.05}
+  .cta p{color:rgba(255,255,255,.9);max-width:48ch;margin:0 auto 26px}
+  .cta .btn{background:#fff;color:var(--clay-deep)} .cta .btn:hover{background:#fff3e8;color:var(--clay-deep)}
+
+  footer{background:var(--ink);color:#cdbfae;padding:40px 0 30px;font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+  footer img{height:26px;filter:brightness(0) invert(1);opacity:.85}
+
+  @media(max-width:860px){
+    .nav .links{display:none}
+    .vgrid{grid-template-columns:1fr}
+    .vcard{border-right:0;border-bottom:1px solid var(--cream-2)}
+    .eco,.quote{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+  <header><div class="wrap nav">
+    <img src="/uploads/2024/11/logo_Caterlord_b-1.png" alt="Caterlord">
+    <nav class="links"><a href="#">Products</a><a href="#">Solutions</a><a href="#">Stories</a></nav>
+    <a class="cta" href="#">Book a demo</a>
+  </div></header>
+
+  <section class="hero">
+    <div class="bg"><img src="/uploads/2025/02/caterlordPOS_003_EN5.jpg" alt=""></div>
+    <div class="wrap inner">
+      <span class="eyebrow">The POS that feels like hospitality</span>
+      <h1>Service, on <em>every channel</em> — from one calm system.</h1>
+      <p>The No.1 cloud POS for restaurants. Integrated with food delivery, QR ordering, payments and e-wallets, with real-time sync between online and offline operations.</p>
+      <div class="cta-row"><a class="btn" href="#">Book a demo</a><a class="btn ghost" href="#">Explore the ecosystem</a></div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec-head"><span class="eyebrow">Why Caterlord</span><h2>Everything to run the room, gracefully.</h2></div>
+    <div class="vgrid">
+      <div class="vcard"><span class="n">i.</span><h3>All-in-one</h3><p>POS, QR &amp; kiosk ordering, checkout, loyalty, Connect and KDS — from one vendor, selected to fit your concept.</p></div>
+      <div class="vcard"><span class="n">ii.</span><h3>Fully connected</h3><p>The Cloud API links your POS to delivery, 3PL/4PL, payments, e-wallets, accounting, ERP and inventory.</p></div>
+      <div class="vcard"><span class="n">iii.</span><h3>Quietly insightful</h3><p>Real-time data from every touchpoint, with 50+ reports and BI visualization across all locations.</p></div>
+    </div>
+  </section>
+
+  <div class="break">
+    <img src="/uploads/2025/02/CPOS01_EN5.png" alt="Caterlord POS in service">
+    <div class="cap wrap"><span class="eyebrow" style="color:#ffd9a8">In service</span></div>
+  </div>
+
+  <section class="wrap sec">
+    <div class="sec-head"><span class="eyebrow">The ecosystem</span><h2>Seven modules, one family.</h2></div>
+    <div class="eco">
+      <a href="#"><img src="/uploads/2024/12/product_pos.jpg"><div><h3>Caterlord POS</h3><p>The cloud POS at the core</p></div></a>
+      <a href="#"><img src="/uploads/2024/12/product_mobile.jpg"><div><h3>Caterlord Mobile</h3><p>QR self-ordering</p></div></a>
+      <a href="#"><img src="/uploads/2025/09/product_kiosk3-1280x1536-1.jpg"><div><h3>Caterlord Kiosk</h3><p>Pre-paid kiosk orders</p></div></a>
+      <a href="#"><img src="/uploads/2025/03/product_SelfCheckout2.png"><div><h3>Caterlord Checkout</h3><p>Guest self-checkout</p></div></a>
+      <a href="#"><img src="/uploads/2024/12/product_loyalty.jpg"><div><h3>Caterlord Loyalty</h3><p>Reward every transaction</p></div></a>
+      <a href="#"><img src="/uploads/2024/12/product_connect.jpg"><div><h3>Caterlord Connect</h3><p>Aggregator orders unified</p></div></a>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="quote">
+      <img src="/uploads/2026/06/GoldenPhoenix_TestimonialCovers.jpg" alt="Golden Phoenix">
+      <div>
+        <div class="stars">★★★★★</div>
+        <blockquote>“During peak hours we used to face serious bottlenecks at the cashier. Since integrating delivery with checkout, staff no longer re-enter orders manually.”</blockquote>
+        <cite>— Ms Man Wong, Chief Executive, Golden Phoenix Restaurant</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Let’s set your table.</h2>
+      <p>Talk to our team and we’ll tailor a plan for your operation.</p>
+      <a class="btn" href="#">Book a demo</a>
+    </div>
+  </section>
+
+  <footer><div class="wrap">
+    <img src="/uploads/2024/11/logo_Caterlord_b-1.png" alt="Caterlord">
+    <span>© Caterlord · Everyware · +852 6888-0133</span>
+  </div></footer>
+</body>
+</html>
